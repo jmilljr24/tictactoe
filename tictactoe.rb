@@ -9,7 +9,7 @@ end
 
 
 class Board
-    attr_reader :display_board
+#   attr_reader :display_board
     def initialize
         @cells = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     end
@@ -37,7 +37,7 @@ class Game
         @board = Board.new
         @player1 = User.new("Player One", "X")
         @player2 = User.new("Player Two", "O")
-        p @current_player = player1
+        @current_player = player1
     end
 
     def display
@@ -45,7 +45,9 @@ class Game
     end
 
     def next_turn
-        postion = gets.chomp
+        position = gets.chomp
+        board.update_board(position.to_i, current_player.symbol)
+        self.display
     end
 end
 
