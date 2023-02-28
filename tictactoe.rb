@@ -23,4 +23,9 @@ class Board
         
         HEREDOC
     end
+
+    def update_board(number, symbol)
+        @cells[number] = symbol
+    end
 end
+
