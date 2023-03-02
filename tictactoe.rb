@@ -38,6 +38,7 @@ end
 
 class Game
     attr_reader :board, :player1, :player2, :current_player
+
     def initialize
         @board = Board.new
         @player1 = User.new("Player One", "X")
@@ -53,7 +54,7 @@ class Game
         @current_player = player1
         until board.full?
             next_turn
-           # break if board.game_over?
+            break if self.game_over?
            @current_player = switch_current_player
         end
     end
@@ -61,7 +62,7 @@ class Game
     def next_turn
         position = gets.chomp
         current_player.selections.push position
-        p current_player.selections
+        current_player.selections
         board.update_board(position.to_i, current_player.symbol)
         self.display
     end
@@ -74,15 +75,20 @@ class Game
     end
     def game_over?
         winning_combo = [
-            [0,1,2],
-            [3,4,5],
-            [6,7,8],
-            [0,3,6],
-            [1,4,7],
-            [2,5,8],
-            [0,4,8],
-            [2,4,6]
+            ["1","2","3"],
+            ["4","5","6"],
+            ["7","8","9"],
+            ["1","4","7"],
+            ["2","5","8"],
+            ["3","6","9"],
+            ["1","5","9"],
+            ["3","5","7"]
         ]
+        winning_combo.any? do |combo|
+             current_player.selections
+             a = combo.intersection(current_player.selections)
+             a == combo 
+        end
     end
 end
 
