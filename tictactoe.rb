@@ -60,6 +60,7 @@ class Game
     end
 
     def next_turn
+        puts "#{@current_player.name} choose a position"
         position = gets.chomp
         current_player.selections.push position
         current_player.selections
@@ -95,7 +96,7 @@ end
 def begin_game
     puts "Player One you are X"
     puts "Player Two you are O"
-    puts "Lets Begin - Player one, choose a position 1-9"
+    puts "Lets Begin"
 end
 
 def play_game
